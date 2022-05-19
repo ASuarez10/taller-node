@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-let VehiculeSchema = Schema ({
+let VehicleSchema = Schema ({
     type: {type: String,  required: true, max: 100},
     brand: {type: String, required: true},
     model: {type: String, required: true, max: 100,},
@@ -15,4 +15,4 @@ let VehiculeSchema = Schema ({
     }
 })
 
-module.exports = mongoose.model('Vehicule', VehiculeSchema)
+module.exports = mongoose.model('Vehicle', VehicleSchema)

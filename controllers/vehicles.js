@@ -1,8 +1,8 @@
-const Vehicule = require('../models/vehicules')
+const Vehicle = require('../models/vehicles')
 const User = require("../models/users")
 
 exports.create = async (req, res)=> {
-    let vehicule = new Vehicule ({
+    let vehicle = new Vehicle ({
         brand: req.body.brand,
         type: req.body.type,
         model: req.body.model,
@@ -14,34 +14,34 @@ exports.create = async (req, res)=> {
     vehicule.save (err => {
         if (err)
             return next(err)
-        res.send({status: "OK", message: "Vehicule created succesfully"})
+        res.send({status: "OK", message: "Vehicle created succesfully"})
     })
 
-    const owner = await User.findById({_id: vehicule.owner})
-    owner.vehicules.push(vehicule)
+    const owner = await User.findById({_id: vehicle.owner})
+    owner.vehicles.push(vehicle)
     await owner.save()
 }
 
 exports.index = (req, res, next) => {
-    Vehicule.find({}, (err, vehicules)=>{
+    Vehicle.find({}, (err, vehicles)=>{
         if (err)
             return next(err) 
-        res.send(vehicules)       
+        res.send(vehicles)       
     } )
 }
 
 exports.show = (req, res, next) => {
-    // Vehicule.findById(req.params.id, (err, Vehicule) => {
+    // Vehicle.findById(req.params.id, (err, Vehicle) => {
     //     if (err)
     //         return next(err) 
-    //     res.send(Vehicule)
+    //     res.send(Vehicle)
     // } )
-    Vehicule.findById(req.params.id)
-         .then(vehicule => {
-             if(vehicule == null){
-                 res.status(404).send({error: "Vehicule not found"})
+    Vehicle.findById(req.params.id)
+         .then(vehicle => {
+             if(vehicle == null){
+                 res.status(404).send({error: "Vehicle not found"})
              }else{
-                 res.send(vehicule)
+                 res.send(vehicle)
              }
          }).catch (error => {
              res.status(500).send({error: error.message})
@@ -49,17 +49,17 @@ exports.show = (req, res, next) => {
 }
 
 exports.update = (req, res, next) => {
-    Vehicule.findByIdAndUpdate(req.params.id, {$set: req.body}, (err)=>{
+    Vehicle.findByIdAndUpdate(req.params.id, {$set: req.body}, (err)=>{
         if (err)
             return next(err) 
-        res.send({status: "OK", message: "Vehicule updated succesfully"})
+        res.send({status: "OK", message: "Vehicle updated succesfully"})
     } )
 }
 
 exports.delete = (req, res, next) => {
-    Vehicule.findByIdAndRemove(req.params.id,(err)=>{
+    Vehicle.findByIdAndRemove(req.params.id,(err)=>{
         if (err)
             return next(err) 
-        res.send({status: "OK", message: "Vehicule deleted succesfully"})
+        res.send({status: "OK", message: "Vehicle deleted succesfully"})
     })
 }

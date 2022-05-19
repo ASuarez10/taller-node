@@ -12,7 +12,7 @@ let UserSchema = Schema ({
     active: {type: String,  required: true, max: 100},
     token: {type: String,  required: false, max: 100},
     vehicules: [
-        { type: Schema.Types.ObjectId, ref: 'Vehicule' }
+        { type: Schema.Types.ObjectId, ref: 'Vehicle' }
       ]
 })
 
