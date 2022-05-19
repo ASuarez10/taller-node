@@ -64,7 +64,7 @@ exports.update = (req, res, next) => {
   User.findByIdAndUpdate(req.params.id, {$set: req.body}, (err)=>{
       if (err)
           return next(err) 
-      res.send({status: "OK", message: "Vehicle updated succesfully"})
+      res.send({status: "OK", message: "User updated succesfully"})
   } )
 }
 
@@ -72,7 +72,7 @@ exports.delete = (req, res, next) => {
   User.findByIdAndRemove(req.params.id,(err)=>{
       if (err)
           return next(err) 
-      res.send({status: "OK", message: "Vehicle deleted succesfully"})
+      res.send({status: "OK", message: "User deleted succesfully"})
   })
 }
 

@@ -7,6 +7,8 @@ const userController = require('../controllers/users')
 router.post('/register', validate(schemas.user), userController.create)
 router.post('/login', userController.login)
 router.get('/', userController.index)
+router.put('/:id', userController.update)
+router.delete('/:id', userController.delete)
 router.get('/:name', function(req, res){
     res.send('respond with user id: ' + req.params.name)
 })
