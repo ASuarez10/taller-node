@@ -11,7 +11,7 @@ exports.create = async (req, res)=> {
         owner: req.body.owner
     })
 
-    vehicule.save (err => {
+    vehicle.save (err => {
         if (err)
             return next(err)
         res.send({status: "OK", message: "Vehicle created succesfully"})
@@ -31,11 +31,6 @@ exports.index = (req, res, next) => {
 }
 
 exports.show = (req, res, next) => {
-    // Vehicle.findById(req.params.id, (err, Vehicle) => {
-    //     if (err)
-    //         return next(err) 
-    //     res.send(Vehicle)
-    // } )
     Vehicle.findById(req.params.id)
          .then(vehicle => {
              if(vehicle == null){

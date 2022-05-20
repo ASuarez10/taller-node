@@ -38,8 +38,9 @@ exports.login = async (req, res, next )  => {
   }
 
   const user = await User.findOne({username})
-
+console.log("aaa")
   if (user && bcrypt.compare(password, user.password)) {
+    console.log("jairocachon")
     const token = jwt.sign({user_id: user._id, username},  process.env.TOKENSECRET+"", {expiresIn: "2h" })
     user.token = token
     user.password = null
